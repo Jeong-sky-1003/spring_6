@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 스프링은 bean을 이용해 생성을 지시함 -->
+	<!-- 아래와 같이 지시하면 스프링이 객체를 생성해줌 -->
+	
+	<!-- Exam exam = new NewlecExam(); -->
+	<bean id="exam" class="spring_6.di.entity.NewlecExam" />
+
+	<!-- ExamConsole console = new InlineExamConosle(); -->
+	<bean id="console" class="spring_6.di.ui.InlineExamConosle">
+	
+		<!-- console.setExam(exam); -->
+		<!-- 결합을 위해 property 이용 (Injection) -->
+		<!-- 
+			 이때 name이 setExam이 아니라 exam인 이유는 묵시적으로 set을 쓴다는 것이 전제되어 있기에
+			 이를 생략하고 앞글자를 소문자로 바꿔준 것임
+			 즉, 반드시 setter를 가지고 있어아 함
+		 -->
+		 <!-- 
+		 	 setter 설정 두 가지 타입: value, ref
+		 	 	넣고자 하는 타입 value => value에
+		 	 	넣고자 하는 타입 reference => ref에
+		  -->
+		<property name="exam" ref="exam"/>
+	
+	</bean>
+	
+
+</beans>
